@@ -69,19 +69,19 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
             onSubmit={onSubmit}
             initialValues={{ username: '', password: '' }}
             validationSchema={object().shape({
-                username: string().required('A username or email must be provided.'),
-                password: string().required('Please enter your account password.'),
+                username: string().required('請輸入用戶名 或 電郵'),
+                password: string().required('請輸入賬戶密碼'),
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'Login to Continue'} css={tw`w-full flex`}>
-                    <Field light type={'text'} label={'Username or Email'} name={'username'} disabled={isSubmitting} />
+                <LoginFormContainer title={'登入'} subtitle={'歡迎回來 SharkyLab Hosting!'}>
+                    <Field light type={'text'} label={'用戶名 或 電郵'} name={'username'} disabled={isSubmitting} />
                     <div css={tw`mt-6`}>
-                        <Field light type={'password'} label={'Password'} name={'password'} disabled={isSubmitting} />
+                        <Field light type={'password'} label={'密碼'} name={'password'} disabled={isSubmitting} />
                     </div>
                     <div css={tw`mt-6`}>
                         <Button type={'submit'} size={'xlarge'} isLoading={isSubmitting} disabled={isSubmitting}>
-                            Login
+                            <span css={tw`font-bold`}>登入!</span>
                         </Button>
                     </div>
                     {recaptchaEnabled && (
@@ -102,9 +102,15 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
                     <div css={tw`mt-6 text-center`}>
                         <Link
                             to={'/auth/password'}
-                            css={tw`text-xs text-neutral-500 tracking-wide no-underline uppercase hover:text-neutral-600`}
+                            css={tw`text-sm text-neutral-500 tracking-wide no-underline uppercase`}
                         >
-                            Forgot password?
+                            忘記密碼?
+                        </Link>
+                        <Link
+                            to={'/auth/register'}
+                            css={tw`text-sm text-neutral-500 tracking-wide no-underline uppercase ml-5`}
+                        >
+                            立即註冊?
                         </Link>
                     </div>
                 </LoginFormContainer>

@@ -8,16 +8,16 @@
  */
 return [
     'auth' => [
-        'fail' => 'Failed log in',
-        'success' => 'Logged in',
-        'password-reset' => 'Password reset',
-        'reset-password' => 'Requested password reset',
-        'checkpoint' => 'Two-factor authentication requested',
-        'recovery-token' => 'Used two-factor recovery token',
-        'token' => 'Solved two-factor challenge',
-        'ip-blocked' => 'Blocked request from unlisted IP address for :identifier',
+        'fail' => '登入失敗',
+        'success' => '登入成功',
+        'password-reset' => '密碼重設',
+        'reset-password' => '要求重設密碼',
+        'checkpoint' => '要求二步驗證',
+        'recovery-token' => '使用二步驗證恢復代碼',
+        'token' => '解決二步驗證問題',
+        'ip-blocked' => '阻止來自未列清單 IP 地址的 :identifier 登入',
         'sftp' => [
-            'fail' => 'Failed SFTP log in',
+            'fail' => 'SFTP 登入失敗',
         ],
     ],
     'user' => [

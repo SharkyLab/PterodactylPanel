@@ -67,24 +67,24 @@ export default () => {
             initialValues={{ email: '' }}
             validationSchema={object().shape({
                 email: string()
-                    .email('A valid email address must be provided to continue.')
-                    .required('A valid email address must be provided to continue.'),
+                    .email('必須提供賬號電郵地址')
+                    .required('必須提供賬號電郵地址'),
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'Request Password Reset'} css={tw`w-full flex`}>
+                <LoginFormContainer title={'忘記密碼'} subtitle={''} css={tw`w-full flex`}>
                     <Field
                         light
-                        label={'Email'}
+                        label={'電郵'}
                         description={
-                            'Enter your account email address to receive instructions on resetting your password.'
+                            '輸入賬號電郵以接收重設密碼指引'
                         }
                         name={'email'}
                         type={'email'}
                     />
                     <div css={tw`mt-6`}>
                         <Button type={'submit'} size={'xlarge'} disabled={isSubmitting} isLoading={isSubmitting}>
-                            Send Email
+                            重設密碼
                         </Button>
                     </div>
                     {recaptchaEnabled && (
@@ -105,9 +105,9 @@ export default () => {
                     <div css={tw`mt-6 text-center`}>
                         <Link
                             to={'/auth/login'}
-                            css={tw`text-xs text-neutral-500 tracking-wide uppercase no-underline hover:text-neutral-700`}
+                            css={tw`text-sm text-neutral-500 tracking-wide no-underline uppercase`}
                         >
-                            Return to Login
+                            返回登入
                         </Link>
                     </div>
                 </LoginFormContainer>

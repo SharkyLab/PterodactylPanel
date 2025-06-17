@@ -40,12 +40,12 @@ const inputStyle = css<Props>`
     // Reset to normal styling.
     resize: none;
     ${tw`appearance-none outline-none w-full min-w-0`};
-    ${tw`p-3 border-2 rounded text-sm transition-all duration-150`};
+    ${tw`p-3 border-2 rounded-xl text-sm transition-all duration-150`};
     ${tw`bg-neutral-600 border-neutral-500 hover:border-neutral-400 text-neutral-200 shadow-none focus:ring-0`};
 
     & + .input-help {
-        ${tw`mt-1 text-xs`};
-        ${(props) => (props.hasError ? tw`text-red-200` : tw`text-neutral-200`)};
+        ${tw`mt-1 text-sm`};
+        ${(props) => (props.hasError ? tw`text-red-500` : tw`text-neutral-400`)};
     }
 
     &:required,
