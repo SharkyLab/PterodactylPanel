@@ -16,6 +16,7 @@ export interface Server {
     internalId: number | string;
     uuid: string;
     name: string;
+    expDate: string;
     node: string;
     isNodeUnderMaintenance: boolean;
     status: ServerStatus;
@@ -50,6 +51,7 @@ export const rawDataToServerObject = ({ attributes: data }: FractalResponseData)
     internalId: data.internal_id,
     uuid: data.uuid,
     name: data.name,
+    expDate: data.exp_date,
     node: data.node,
     isNodeUnderMaintenance: data.is_node_under_maintenance,
     status: data.status,

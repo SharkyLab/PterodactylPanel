@@ -11,16 +11,16 @@ function mbToBytes(megabytes: number): number {
  * Given an amount of bytes, converts them into a human readable string format
  * using "1024" as the divisor.
  */
-function bytesToString(bytes: number, decimals = 2): string {
+function bytesToString(bytes: number, decimals = 1): string {
     const k = _CONVERSION_UNIT;
 
-    if (bytes < 1) return '0 Bytes';
+    if (bytes < 1) return '0 B';
 
     decimals = Math.floor(Math.max(0, decimals));
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     const value = Number((bytes / Math.pow(k, i)).toFixed(decimals));
 
-    return `${value} ${['Bytes', 'KiB', 'MiB', 'GiB', 'TiB'][i]}`;
+    return `${value} ${['B', 'KB', 'MB', 'GB', 'TB'][i]}`;
 }
 
 /**

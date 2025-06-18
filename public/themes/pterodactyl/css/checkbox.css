@@ -40,7 +40,7 @@
     top: 2.5px;
     margin-left: -20px;
     border: 1px solid #cccccc;
-    border-radius: 3px;
+    border-radius: 0.75rem;
     background-color: #fff;
     -webkit-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;
     -o-transition: border 0.15s ease-in-out, color 0.15s ease-in-out;

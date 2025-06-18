@@ -17,17 +17,17 @@ const RightNavigation = styled.div`
     & > a,
     & > button,
     & > .navigation-link {
-        ${tw`flex items-center h-full no-underline text-neutral-300 px-6 cursor-pointer transition-all duration-150`};
+        ${tw`flex items-center h-full no-underline text-white px-6 cursor-pointer transition-all duration-150`};
 
         &:active,
         &:hover {
-            ${tw`text-neutral-100 bg-black`};
+            ${tw`text-neutral-100 bg-[#0048b4]`};
         }
 
         &:active,
         &:hover,
         &.active {
-            box-shadow: inset 0 -2px ${theme`colors.cyan.600`.toString()};
+            box-shadow: inset 0 -2px #1aa1f3;
         }
     }
 `;
@@ -46,47 +46,51 @@ export default () => {
     };
 
     return (
-        <div className={'w-full bg-neutral-900 shadow-md overflow-x-auto'}>
-            <SpinnerOverlay visible={isLoggingOut} />
-            <div className={'mx-auto w-full flex items-center h-[3.5rem] max-w-[1200px]'}>
-                <div id={'logo'} className={'flex-1'}>
-                    <Link
-                        to={'/'}
-                        className={
-                            'text-2xl font-header px-4 no-underline text-neutral-200 hover:text-neutral-100 transition-colors duration-150'
-                        }
-                    >
-                        {name}
-                    </Link>
+        <>
+            <div className={'sticky top-0 z-10 w-full shadow-md overflow-hidden bg-[#0056d6] text-white'}>
+                <div className="mx-auto w-full max-w-[1200px]">
+                    <SpinnerOverlay visible={isLoggingOut} />
+                    <div className="flex h-10 items-center justify-between pb-1">
+                        <div className="flex items-center justify-center sm:items-stretch sm:justify-start w-full">
+                            <Link to={`/`} className="flex shrink-0 items-center">
+                                <img src={'/favicons/favicon-96x96.png'} className={'w-8 h-8 hidden sm:block'} />
+                                <span className='text-2xl font-header pl-1 no-underline hover:text-neutral-100 transition-colors duration-150 font-skl' translate="no">
+                                    {name}
+                                </span>
+                            </Link>
+                        </div>
+                        <div className="h-full">
+                            <RightNavigation className={'flex h-full items-center justify-center'}>
+                                <SearchContainer />
+                                <Tooltip placement={'bottom'} content={'伺服器列表'}>
+                                    <NavLink to={'/'} exact>
+                                        <FontAwesomeIcon icon={faLayerGroup} />
+                                    </NavLink>
+                                </Tooltip>
+                                {rootAdmin && (
+                                    <Tooltip placement={'bottom'} content={'管理員'}>
+                                        <a href={'/admin'} rel={'noreferrer'}>
+                                            <FontAwesomeIcon icon={faCogs} />
+                                        </a>
+                                    </Tooltip>
+                                )}
+                                <Tooltip placement={'bottom'} content={'帳號設定賬號'}>
+                                    <NavLink to={'/account'}>
+                                        <span className={'flex items-center w-5 h-5'}>
+                                            <Avatar.User />
+                                        </span>
+                                    </NavLink>
+                                </Tooltip>
+                                <Tooltip placement={'bottom'} content={'登出賬號'}>
+                                    <button onClick={onTriggerLogout}>
+                                        <FontAwesomeIcon icon={faSignOutAlt} />
+                                    </button>
+                                </Tooltip>
+                            </RightNavigation>
+                        </div>
+                    </div>
                 </div>
-                <RightNavigation className={'flex h-full items-center justify-center'}>
-                    <SearchContainer />
-                    <Tooltip placement={'bottom'} content={'Dashboard'}>
-                        <NavLink to={'/'} exact>
-                            <FontAwesomeIcon icon={faLayerGroup} />
-                        </NavLink>
-                    </Tooltip>
-                    {rootAdmin && (
-                        <Tooltip placement={'bottom'} content={'Admin'}>
-                            <a href={'/admin'} rel={'noreferrer'}>
-                                <FontAwesomeIcon icon={faCogs} />
-                            </a>
-                        </Tooltip>
-                    )}
-                    <Tooltip placement={'bottom'} content={'Account Settings'}>
-                        <NavLink to={'/account'}>
-                            <span className={'flex items-center w-5 h-5'}>
-                                <Avatar.User />
-                            </span>
-                        </NavLink>
-                    </Tooltip>
-                    <Tooltip placement={'bottom'} content={'Sign Out'}>
-                        <button onClick={onTriggerLogout}>
-                            <FontAwesomeIcon icon={faSignOutAlt} />
-                        </button>
-                    </Tooltip>
-                </RightNavigation>
             </div>
-        </div>
+        </>
     );
 };

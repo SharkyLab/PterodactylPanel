@@ -16,6 +16,7 @@ use Pterodactyl\Http\Middleware\Api\Client\Server\AuthenticateServerAccess;
 | Endpoint: /api/client
 |
 */
+
 Route::get('/', [Client\ClientController::class, 'index'])->name('api:client.index');
 Route::get('/permissions', [Client\ClientController::class, 'permissions']);
 
@@ -132,6 +133,12 @@ Route::group([
     Route::group(['prefix' => '/startup'], function () {
         Route::get('/', [Client\Servers\StartupController::class, 'index']);
         Route::put('/variable', [Client\Servers\StartupController::class, 'update']);
+    });
+
+    Route::group(['prefix' => '/subdomain'], function () {
+        Route::get('/', [Client\Servers\SubdomainController::class, 'index']);
+        Route::post('/create', [Client\Servers\SubdomainController::class, 'create']);
+        Route::delete('/delete/{id}', [Client\Servers\SubdomainController::class, 'delete']);
     });
 
     Route::group(['prefix' => '/settings'], function () {

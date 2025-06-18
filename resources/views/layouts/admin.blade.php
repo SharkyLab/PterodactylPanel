@@ -91,6 +91,11 @@
                                 <i class="fa fa-database"></i> <span>Databases</span>
                             </a>
                         </li>
+                        <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.subdomain') ?: 'active' }}">
+                            <a href="{{ route('admin.subdomain') }}">
+                                <i class="fa fa-globe"></i> <span>SubDomain Manager</span>
+                            </a>
+                        </li>
                         <li class="{{ ! starts_with(Route::currentRouteName(), 'admin.locations') ?: 'active' }}">
                             <a href="{{ route('admin.locations') }}">
                                 <i class="fa fa-globe"></i> <span>Locations</span>

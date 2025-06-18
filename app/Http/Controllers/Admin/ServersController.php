@@ -58,8 +58,7 @@ class ServersController extends Controller
         protected ServerConfigurationStructureService $serverConfigurationStructureService,
         protected StartupModificationService $startupModificationService,
         protected SuspensionService $suspensionService
-    ) {
-    }
+    ) {}
 
     /**
      * Update the details for a server.
@@ -70,7 +69,11 @@ class ServersController extends Controller
     public function setDetails(Request $request, Server $server): RedirectResponse
     {
         $this->detailsModificationService->handle($server, $request->only([
-            'owner_id', 'external_id', 'name', 'description',
+            'owner_id',
+            'external_id',
+            'name',
+            'description',
+            'exp_date',
         ]));
 
         $this->alert->success(trans('admin/server.alerts.details_updated'))->flash();
@@ -143,9 +146,19 @@ class ServersController extends Controller
     {
         try {
             $this->buildModificationService->handle($server, $request->only([
-                'allocation_id', 'add_allocations', 'remove_allocations',
-                'memory', 'swap', 'io', 'cpu', 'threads', 'disk',
-                'database_limit', 'allocation_limit', 'backup_limit', 'oom_disabled',
+                'allocation_id',
+                'add_allocations',
+                'remove_allocations',
+                'memory',
+                'swap',
+                'io',
+                'cpu',
+                'threads',
+                'disk',
+                'database_limit',
+                'allocation_limit',
+                'backup_limit',
+                'oom_disabled',
             ]));
         } catch (DataValidationException $exception) {
             throw new ValidationException($exception->getValidator());

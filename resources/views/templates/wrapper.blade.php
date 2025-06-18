@@ -40,7 +40,7 @@
 
         @include('layouts.scripts')
     </head>
-    <body class="{{ $css['body'] ?? 'bg-neutral-50' }}">
+    <body class="{{ $css['body'] ?? 'bg-neutral-50' }}" style="background-color: #101828;">
         @section('content')
             @yield('above-container')
             @yield('container')

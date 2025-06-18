@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 
 @section('title')
-    Server — {{ $server->name }}: Details
+Server — {{ $server->name }}: Details
 @endsection
 
 @section('content-header')
-    <h1>{{ $server->name }}<small>Edit details for this server including owner and container.</small></h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
-        <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
-        <li class="active">Details</li>
-    </ol>
+<h1>{{ $server->name }}<small>Edit details for this server including owner and container.</small></h1>
+<ol class="breadcrumb">
+    <li><a href="{{ route('admin.index') }}">Admin</a></li>
+    <li><a href="{{ route('admin.servers') }}">Servers</a></li>
+    <li><a href="{{ route('admin.servers.view', $server->id) }}">{{ $server->name }}</a></li>
+    <li class="active">Details</li>
+</ol>
 @endsection
 
 @section('content')
@@ -28,6 +28,11 @@
                         <label for="name" class="control-label">Server Name <span class="field-required"></span></label>
                         <input type="text" name="name" value="{{ old('name', $server->name) }}" class="form-control" />
                         <p class="text-muted small">Character limits: <code>a-zA-Z0-9_-</code> and <code>[Space]</code>.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="exp_date" class="control-label">Expiration date</label>
+                        <input type="date" name="exp_date" value="{{ old('exp_date', $server->exp_date) }}" class="form-control" />
+                        <p class="text-muted small">The expiration date of this server. (Leave blank to keep the server from expiring)</p>
                     </div>
                     <div class="form-group">
                         <label for="external_id" class="control-label">External Identifier</label>
@@ -59,8 +64,8 @@
 @endsection
 
 @section('footer-scripts')
-    @parent
-    <script>
+@parent
+<script>
     function escapeHtml(str) {
         var div = document.createElement('div');
         div.appendChild(document.createTextNode(str));
@@ -72,38 +77,48 @@
             url: '/admin/users/accounts.json',
             dataType: 'json',
             delay: 250,
-            data: function (params) {
+            data: function(params) {
                 return {
-                    filter: { email: params.term },
+                    filter: {
+                        email: params.term
+                    },
                     page: params.page,
                 };
             },
-            processResults: function (data, params) {
-                return { results: data };
+            processResults: function(data, params) {
+                return {
+                    results: data
+                };
             },
             cache: true,
         },
-        escapeMarkup: function (markup) { return markup; },
+        escapeMarkup: function(markup) {
+            return markup;
+        },
         minimumInputLength: 2,
-        templateResult: function (data) {
+        templateResult: function(data) {
             if (data.loading) return escapeHtml(data.text);
 
             return '<div class="user-block"> \
                 <img class="img-circle img-bordered-xs" src="https://www.gravatar.com/avatar/' + escapeHtml(data.md5) + '?s=120" alt="User Image"> \
                 <span class="username"> \
-                    <a href="#">' + escapeHtml(data.name_first) + ' ' + escapeHtml(data.name_last) +'</a> \
+                    <a href="#">' + escapeHtml(data.name_first) + ' ' + escapeHtml(data.name_last) + '</a> \
                 </span> \
                 <span class="description"><strong>' + escapeHtml(data.email) + '</strong> - ' + escapeHtml(data.username) + '</span> \
             </div>';
         },
-        templateSelection: function (data) {
+        templateSelection: function(data) {
             if (typeof data.name_first === 'undefined') {
                 data = {
                     md5: '{{ md5(strtolower($server->user->email)) }}',
                     name_first: '{{ $server->user->name_first }}',
                     name_last: '{{ $server->user->name_last }}',
                     email: '{{ $server->user->email }}',
-                    id: {{ $server->owner_id }}
+                    id: {
+                        {
+                            $server - > owner_id
+                        }
+                    }
                 };
             }
 
@@ -117,5 +132,5 @@
             </div>';
         }
     });
-    </script>
+</script>
 @endsection

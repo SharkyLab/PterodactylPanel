@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
 @section('title')
-    New Server
+New Server
 @endsection
 
 @section('content-header')
-    <h1>Create Server<small>Add a new server to the panel.</small></h1>
-    <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.servers') }}">Servers</a></li>
-        <li class="active">Create Server</li>
-    </ol>
+<h1>Create Server<small>Add a new server to the panel.</small></h1>
+<ol class="breadcrumb">
+    <li><a href="{{ route('admin.index') }}">Admin</a></li>
+    <li><a href="{{ route('admin.servers') }}">Servers</a></li>
+    <li class="active">Create Server</li>
+</ol>
 @endsection
 
 @section('content')
@@ -34,6 +34,11 @@
                             <label for="pUserId">Server Owner</label>
                             <select id="pUserId" name="owner_id" class="form-control" style="padding-left:0;"></select>
                             <p class="small text-muted no-margin">Email address of the Server Owner.</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="exp_date">Expiration date</label>
+                            <input type="date" class="form-control" id="expiration" name="exp_date" value="{{ old('exp_date') }}" placeholder="Expiration Date">
+                            <p class="small text-muted no-margin">The expiration date of this server. (Leave blank to keep the server from expiring)</p>
                         </div>
                     </div>
 
@@ -69,15 +74,15 @@
                         <label for="pNodeId">Node</label>
                         <select name="node_id" id="pNodeId" class="form-control">
                             @foreach($locations as $location)
-                                <optgroup label="{{ $location->long }} ({{ $location->short }})">
+                            <optgroup label="{{ $location->long }} ({{ $location->short }})">
                                 @foreach($location->nodes as $node)
 
                                 <option value="{{ $node->id }}"
                                     @if($location->id === old('location_id')) selected @endif
-                                >{{ $node->name }}</option>
+                                    >{{ $node->name }}</option>
 
                                 @endforeach
-                                </optgroup>
+                            </optgroup>
                             @endforeach
                         </select>
 
@@ -112,21 +117,21 @@
                     <div class="form-group col-xs-6">
                         <label for="pDatabaseLimit" class="control-label">Database Limit</label>
                         <div>
-                            <input type="text" id="pDatabaseLimit" name="database_limit" class="form-control" value="{{ old('database_limit', 0) }}"/>
+                            <input type="text" id="pDatabaseLimit" name="database_limit" class="form-control" value="{{ old('database_limit', 0) }}" />
                         </div>
                         <p class="text-muted small">The total number of databases a user is allowed to create for this server.</p>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="pAllocationLimit" class="control-label">Allocation Limit</label>
                         <div>
-                            <input type="text" id="pAllocationLimit" name="allocation_limit" class="form-control" value="{{ old('allocation_limit', 0) }}"/>
+                            <input type="text" id="pAllocationLimit" name="allocation_limit" class="form-control" value="{{ old('allocation_limit', 0) }}" />
                         </div>
                         <p class="text-muted small">The total number of allocations a user is allowed to create for this server.</p>
                     </div>
                     <div class="form-group col-xs-6">
                         <label for="pBackupLimit" class="control-label">Backup Limit</label>
                         <div>
-                            <input type="text" id="pBackupLimit" name="backup_limit" class="form-control" value="{{ old('backup_limit', 0) }}"/>
+                            <input type="text" id="pBackupLimit" name="backup_limit" class="form-control" value="{{ old('backup_limit', 0) }}" />
                         </div>
                         <p class="text-muted small">The total number of backups that can be created for this server.</p>
                     </div>
@@ -150,7 +155,8 @@
                             <span class="input-group-addon">%</span>
                         </div>
 
-                        <p class="text-muted small">If you do not want to limit CPU usage, set the value to <code>0</code>. To determine a value, take the number of threads and multiply it by 100. For example, on a quad core system without hyperthreading <code>(4 * 100 = 400)</code> there is <code>400%</code> available. To limit a server to using half of a single thread, you would set the value to <code>50</code>. To allow a server to use up to two threads, set the value to <code>200</code>.<p>
+                        <p class="text-muted small">If you do not want to limit CPU usage, set the value to <code>0</code>. To determine a value, take the number of threads and multiply it by 100. For example, on a quad core system without hyperthreading <code>(4 * 100 = 400)</code> there is <code>400%</code> available. To limit a server to using half of a single thread, you would set the value to <code>50</code>. To allow a server to use up to two threads, set the value to <code>200</code>.
+                        <p>
                     </div>
 
                     <div class="form-group col-xs-6">
@@ -235,10 +241,10 @@
 
                         <select id="pNestId" name="nest_id" class="form-control">
                             @foreach($nests as $nest)
-                                <option value="{{ $nest->id }}"
-                                    @if($nest->id === old('nest_id'))
-                                        selected="selected"
-                                    @endif
+                            <option value="{{ $nest->id }}"
+                                @if($nest->id === old('nest_id'))
+                                selected="selected"
+                                @endif
                                 >{{ $nest->name }}</option>
                             @endforeach
                         </select>
@@ -273,7 +279,7 @@
                     <div class="form-group col-xs-12">
                         <label for="pDefaultContainer">Docker Image</label>
                         <select id="pDefaultContainer" name="image" class="form-control"></select>
-                        <input id="pDefaultContainerCustom" name="custom_image" value="{{ old('custom_image') }}" class="form-control" placeholder="Or enter a custom image..." style="margin-top:1rem"/>
+                        <input id="pDefaultContainerCustom" name="custom_image" value="{{ old('custom_image') }}" class="form-control" placeholder="Or enter a custom image..." style="margin-top:1rem" />
                         <p class="small text-muted no-margin">This is the default Docker image that will be used to run this server. Select an image from the dropdown above, or enter a custom image in the text field above.</p>
                     </div>
                 </div>
@@ -313,83 +319,92 @@
 @endsection
 
 @section('footer-scripts')
-    @parent
-    {!! Theme::js('vendor/lodash/lodash.js') !!}
+@parent
+{!! Theme::js('vendor/lodash/lodash.js') !!}
 
-    <script type="application/javascript">
-        // Persist 'Service Variables'
-        function serviceVariablesUpdated(eggId, ids) {
-            @if (old('egg_id'))
-                // Check if the egg id matches.
-                if (eggId != '{{ old('egg_id') }}') {
-                    return;
-                }
-
-                @if (old('environment'))
-                    @foreach (old('environment') as $key => $value)
-                        $('#' + ids['{{ $key }}']).val('{{ $value }}');
-                    @endforeach
-                @endif
-            @endif
-            @if(old('image'))
-                $('#pDefaultContainer').val('{{ old('image') }}');
-            @endif
+<script type="application/javascript">
+    // Persist 'Service Variables'
+    function serviceVariablesUpdated(eggId, ids) {
+        @if(old('egg_id'))
+        // Check if the egg id matches.
+        if (eggId != '{{ old('
+            egg_id ') }}') {
+            return;
         }
-        // END Persist 'Service Variables'
-    </script>
 
-    {!! Theme::js('js/admin/new-server.js?v=20220530') !!}
+        @if(old('environment'))
+        @foreach(old('environment') as $key => $value)
+        $('#' + ids['{{ $key }}']).val('{{ $value }}');
+        @endforeach
+        @endif
+        @endif
+        @if(old('image'))
+        $('#pDefaultContainer').val('{{ old('
+            image ') }}');
+        @endif
+    }
+    // END Persist 'Service Variables'
+</script>
 
-    <script type="application/javascript">
-        $(document).ready(function() {
-            // Persist 'Server Owner' select2
-            @if (old('owner_id'))
-                $.ajax({
-                    url: '/admin/users/accounts.json?user_id={{ old('owner_id') }}',
-                    dataType: 'json',
-                }).then(function (data) {
-                    initUserIdSelect([ data ]);
-                });
-            @else
-                initUserIdSelect();
-            @endif
-            // END Persist 'Server Owner' select2
+{!! Theme::js('js/admin/new-server.js?v=20220530') !!}
 
-            // Persist 'Node' select2
-            @if (old('node_id'))
-                $('#pNodeId').val('{{ old('node_id') }}').change();
-
-                // Persist 'Default Allocation' select2
-                @if (old('allocation_id'))
-                    $('#pAllocation').val('{{ old('allocation_id') }}').change();
-                @endif
-                // END Persist 'Default Allocation' select2
-
-                // Persist 'Additional Allocations' select2
-                @if (old('allocation_additional'))
-                    const additional_allocations = [];
-
-                    @for ($i = 0; $i < count(old('allocation_additional')); $i++)
-                        additional_allocations.push('{{ old('allocation_additional.'.$i)}}');
-                    @endfor
-
-                    $('#pAllocationAdditional').val(additional_allocations).change();
-                @endif
-                // END Persist 'Additional Allocations' select2
-            @endif
-            // END Persist 'Node' select2
-
-            // Persist 'Nest' select2
-            @if (old('nest_id'))
-                $('#pNestId').val('{{ old('nest_id') }}').change();
-
-                // Persist 'Egg' select2
-                @if (old('egg_id'))
-                    $('#pEggId').val('{{ old('egg_id') }}').change();
-                @endif
-                // END Persist 'Egg' select2
-            @endif
-            // END Persist 'Nest' select2
+<script type="application/javascript">
+    $(document).ready(function() {
+        // Persist 'Server Owner' select2
+        @if(old('owner_id'))
+        $.ajax({
+            url: '/admin/users/accounts.json?user_id={{ old('
+            owner_id ') }}',
+            dataType: 'json',
+        }).then(function(data) {
+            initUserIdSelect([data]);
         });
-    </script>
+        @else
+        initUserIdSelect();
+        @endif
+        // END Persist 'Server Owner' select2
+
+        // Persist 'Node' select2
+        @if(old('node_id'))
+        $('#pNodeId').val('{{ old('
+            node_id ') }}').change();
+
+        // Persist 'Default Allocation' select2
+        @if(old('allocation_id'))
+        $('#pAllocation').val('{{ old('
+            allocation_id ') }}').change();
+        @endif
+        // END Persist 'Default Allocation' select2
+
+        // Persist 'Additional Allocations' select2
+        @if(old('allocation_additional'))
+        const additional_allocations = [];
+
+        @for($i = 0; $i < count(old('allocation_additional')); $i++)
+        additional_allocations.push('{{ old('
+            allocation_additional.
+            '.$i)}}');
+        @endfor
+
+        $('#pAllocationAdditional').val(additional_allocations).change();
+        @endif
+        // END Persist 'Additional Allocations' select2
+        @endif
+        // END Persist 'Node' select2
+
+        // Persist 'Nest' select2
+        @if(old('nest_id'))
+        $('#pNestId').val('{{ old('
+            nest_id ') }}').change();
+
+        // Persist 'Egg' select2
+        @if(old('egg_id'))
+        $('#pEggId').val('{{ old('
+            egg_id ') }}').change();
+        @endif
+        // END Persist 'Egg' select2
+        @endif
+        // END Persist 'Nest' select2
+    });
+</script>
 @endsection

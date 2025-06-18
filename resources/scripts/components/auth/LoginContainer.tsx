@@ -74,14 +74,14 @@ const LoginContainer = ({ history }: RouteComponentProps) => {
             })}
         >
             {({ isSubmitting, setSubmitting, submitForm }) => (
-                <LoginFormContainer title={'登入'} subtitle={'歡迎回來 SharkyLab Hosting!'}>
+                <LoginFormContainer title={'登入'} subtitle={'歡迎回來 SharkyCloud!'}>
                     <Field light type={'text'} label={'用戶名 或 電郵'} name={'username'} disabled={isSubmitting} />
                     <div css={tw`mt-6`}>
                         <Field light type={'password'} label={'密碼'} name={'password'} disabled={isSubmitting} />
                     </div>
                     <div css={tw`mt-6`}>
                         <Button type={'submit'} size={'xlarge'} isLoading={isSubmitting} disabled={isSubmitting}>
-                            <span css={tw`font-bold`}>登入!</span>
+                            登入
                         </Button>
                     </div>
                     {recaptchaEnabled && (

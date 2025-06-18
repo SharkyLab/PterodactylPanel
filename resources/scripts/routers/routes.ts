@@ -13,6 +13,8 @@ import AccountApiContainer from '@/components/dashboard/AccountApiContainer';
 import AccountSSHContainer from '@/components/dashboard/ssh/AccountSSHContainer';
 import ActivityLogContainer from '@/components/dashboard/activity/ActivityLogContainer';
 import ServerActivityLogContainer from '@/components/server/ServerActivityLogContainer';
+import SubdomainContainer from '@/components/server/subdomain/SubdomainContainer';
+import DetailsContainer from '@/components/server/details/DetailsContainer';
 
 // Each of the router files is already code split out appropriately — so
 // all of the items above will only be loaded in when that router is loaded.
@@ -46,23 +48,23 @@ export default {
     account: [
         {
             path: '/',
-            name: 'Account',
+            name: '我的賬號',
             component: AccountOverviewContainer,
             exact: true,
         },
-        {
-            path: '/api',
-            name: 'API Credentials',
-            component: AccountApiContainer,
-        },
-        {
-            path: '/ssh',
-            name: 'SSH Keys',
-            component: AccountSSHContainer,
-        },
+        // {
+        //     path: '/api',
+        //     name: 'API Credentials',
+        //     component: AccountApiContainer,
+        // },
+        // {
+        //     path: '/ssh',
+        //     name: 'SSH Keys',
+        //     component: AccountSSHContainer,
+        // },
         {
             path: '/activity',
-            name: 'Activity',
+            name: '賬號活動',
             component: ActivityLogContainer,
         },
     ],
@@ -70,14 +72,20 @@ export default {
         {
             path: '/',
             permission: null,
-            name: 'Console',
-            component: ServerConsole,
+            name: '主頁',
+            component: DetailsContainer,
             exact: true,
+        },
+        {
+            path: '/console',
+            permission: null,
+            name: '控制台',
+            component: ServerConsole,
         },
         {
             path: '/files',
             permission: 'file.*',
-            name: 'Files',
+            name: '文件管理',
             component: FileManagerContainer,
         },
         {
@@ -86,16 +94,16 @@ export default {
             name: undefined,
             component: FileEditContainer,
         },
-        {
-            path: '/databases',
-            permission: 'database.*',
-            name: 'Databases',
-            component: DatabasesContainer,
-        },
+        // {
+        //     path: '/databases',
+        //     permission: 'database.*',
+        //     name: 'Databases',
+        //     component: DatabasesContainer,
+        // },
         {
             path: '/schedules',
             permission: 'schedule.*',
-            name: 'Schedules',
+            name: '定時任務',
             component: ScheduleContainer,
         },
         {
@@ -107,37 +115,43 @@ export default {
         {
             path: '/users',
             permission: 'user.*',
-            name: 'Users',
+            name: '多用戶',
             component: UsersContainer,
         },
         {
             path: '/backups',
             permission: 'backup.*',
-            name: 'Backups',
+            name: '備份',
             component: BackupContainer,
         },
         {
             path: '/network',
             permission: 'allocation.*',
-            name: 'Network',
+            name: '網絡設定',
             component: NetworkContainer,
+        },
+        {
+            path: '/subdomain',
+            permission: 'subdomain.*',
+            name: '子域名',
+            component: SubdomainContainer,
         },
         {
             path: '/startup',
             permission: 'startup.*',
-            name: 'Startup',
+            name: '啟動設定',
             component: StartupContainer,
         },
         {
             path: '/settings',
             permission: ['settings.*', 'file.sftp'],
-            name: 'Settings',
+            name: '伺服器設定',
             component: SettingsContainer,
         },
         {
             path: '/activity',
             permission: 'activity.*',
-            name: 'Activity',
+            name: '伺服器活動',
             component: ServerActivityLogContainer,
         },
     ],

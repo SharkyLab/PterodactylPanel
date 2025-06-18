@@ -21,7 +21,7 @@
     max-height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
-    border-radius: 5px 5px 0 0;
+    border-radius: 0.75rem 0.75rem 0 0;
 }
 
 #terminal > .cmd {
@@ -33,7 +33,7 @@
 #terminal_input {
     width: 100%;
     background: rgb(26, 26, 26);
-    border-radius: 0 0 5px 5px;
+    border-radius: 0 0 0.75rem 0.75rem;
     padding: 0 0 0 10px !important;
 }
 
@@ -57,7 +57,7 @@
     right: 30px;
     bottom: 30px;
     padding: 3.5px 7px;
-    border-radius: 3px;
+    border-radius: 0.75rem;
     background: #fff;
     color: #000;
     opacity: .5;

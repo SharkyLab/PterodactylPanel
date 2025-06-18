@@ -20,9 +20,9 @@ import 'xterm/css/xterm.css';
 import styles from './style.module.css';
 
 const theme = {
-    background: th`colors.black`.toString(),
+    background: "#000",
     cursor: 'transparent',
-    black: th`colors.black`.toString(),
+    black: "#000",
     red: '#E54B4B',
     green: '#9ECE58',
     yellow: '#FAED70',

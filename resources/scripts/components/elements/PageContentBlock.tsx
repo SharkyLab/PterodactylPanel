@@ -26,15 +26,15 @@ const PageContentBlock: React.FC<PageContentBlockProps> = ({ title, showFlashKey
                 </ContentContainer>
                 <ContentContainer css={tw`mb-4`}>
                     <p css={tw`text-center text-neutral-500 text-xs`}>
+                        &nbsp;&copy; 2025 - {new Date().getFullYear()}
                         <a
                             rel={'noopener nofollow noreferrer'}
-                            href={'https://pterodactyl.io'}
+                            href={'https://sharkylab.com'}
                             target={'_blank'}
                             css={tw`no-underline text-neutral-500 hover:text-neutral-300`}
                         >
-                            Pterodactyl&reg;
+                            &nbsp;SharkyLab
                         </a>
-                        &nbsp;&copy; 2015 - {new Date().getFullYear()}
                     </p>
                 </ContentContainer>
             </>

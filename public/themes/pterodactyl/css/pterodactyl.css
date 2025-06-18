@@ -116,7 +116,7 @@
 code {
     background-color: #eef1f6;
     color: #596981;
-    border-radius: 2px;
+    border-radius: 0.75rem;
     padding-left: 4px;
     padding-right: 4px;
     line-height: 1.4;
@@ -667,7 +667,7 @@ input.form-control {
     background-color: #515f6cbb;
     border-width: 1px;
     border-color: #606d7b;
-    border-radius: .25rem;
+    border-radius: 0.75rem;
     color: #cad1d8;
     box-shadow: none;
     -webkit-transition: border .15s linear,box-shaodw .15s ease-in;
@@ -679,7 +679,7 @@ textarea.form-control {
     background-color: #515f6cbb;
     border-width: 1px;
     border-color: #606d7b;
-    border-radius: .25rem;
+    border-radius: 0.75rem;
     color: #cad1d8;
     box-shadow: none;
     -webkit-transition: border .15s linear,box-shaodw .15s ease-in;
@@ -784,9 +784,10 @@ a:hover {
 }
 
 .form-control {
-    border-color: #606d7b;
-    background-color: #515f6cbb;
+    border-color: #343947;
+    background-color: #1f2933;
     color: #cad1d8;
+    
 }
 
 .form-control[disabled], .form-control[readonly],
